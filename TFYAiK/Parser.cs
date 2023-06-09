@@ -223,26 +223,26 @@ namespace Scanner
         public static void RelExpr()
         {
             AddExpr();
-            while ((s_currentTokenIndex < s_tokens.Count) 
+            while ((s_currentTokenIndex < s_tokens.Count)
                 && Check(Codes.LogicalOpCode))
             {
                 Match(Codes.LogicalOpCode);
                 AddExpr();
             }
-                
+
         }
 
         // <AddExpr> -> <MulExpr> (AddOp <MulExpr>)*
         private static void AddExpr()
         {
-            MulExpr();                                  
+            MulExpr();
             while (s_currentTokenIndex < s_tokens.Count
                 && Check(Codes.RelationalOpCode))
             {
                 Match(LexicalScanner.Codes.RelationalOpCode);
                 MulExpr();
             }
-            
+
         }
 
         // <MulExpr> -> <UnaryExpr>(MulOp <UnaryExpr>)*
