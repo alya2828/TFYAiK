@@ -28,40 +28,30 @@ namespace Scanner
 
             public override string ToString()
             {
-                return $"{startPosition}:{endPosition}  {item}: {lexicalCode}: {Convert.ToInt16(lexicalCode)}";
+                return $"{startPosition}:{endPosition}  [{item}]: {lexicalCode}: {Convert.ToInt16(lexicalCode)}";
             }
         }
 
         public enum Codes
         {
             ErrorCode = -1,
-            IdentifierCode = 1,         // {a-z, A_Z, _}*
-            IntegerConstCode,           // {0-9}*
-            DoubleConstCode,            // {0-9}*{.} & {0-9}*
-            RelationalOpCode,               // .EQ. (=) | .NE. (!=) | .GT. (>)
-            AdditiveOpCode, MultiplicateOpCode, // + - * /
-            LogicalOpCode, LogicalConstantCode,
-            NotOpCode,
-            LeftParenCode, RightParenCode,
+            IdentifierCode = 1,
+            PlusCode,
+            MinusCode,
+            PercentCode,
+            DivideCode,
+            DoubleDivideCode,
+            MultiplyCode,
+            DoubleMultiply, 
+            SpaceConstCode,
+            IntegerConstCode,
+            DoubleConstCode,
+            EqualCode,
         }
 
-        public static bool IsLogicalOp(Codes code)
-        {
-            switch (code)
-            {
-                case Codes.LogicalOpCode:
-                    //case Codes.LogicalAndCode:
-                    //case Codes.LogicalOrCode:
-                    return true;
-                default:
-                    break;
-            }
-            return false;
-        }
-        
         private static Codes IsArithmOperator(string text)
         {
-            if (text.Length > 1)
+            if (text == "")
             {
                 return Codes.ErrorCode;
             }
@@ -69,38 +59,21 @@ namespace Scanner
             switch (text)
             {
                 case "+":
+                    return Codes.PlusCode;
                 case "-":
-                    return Codes.AdditiveOpCode;
+                    return Codes.MinusCode;
                 case "*":
+                    return Codes.MultiplyCode;
+                case "**":
+                    return Codes.DoubleMultiply;
                 case "/":
-                    return Codes.MultiplicateOpCode;
+                    return Codes.DivideCode;
+                case "//":
+                    return Codes.DoubleDivideCode;
+                case "%":
+                    return Codes.PercentCode;
                 default:
                     return Codes.ErrorCode;
-            }
-        }
-
-        private static Codes IsOperator(string text)
-        {
-            if (text == "")
-            {
-                return Codes.ErrorCode;
-            }
-
-            switch (text.ToUpperInvariant())
-            {
-                case ".EQ.": 
-                case ".NE.": 
-                case ".GT.": 
-                case ".GE.": 
-                case ".LT.": 
-                case ".LE.":
-                    return Codes.RelationalOpCode;
-                case ".NOT.":
-                    return Codes.NotOpCode;
-                case ".AND.":
-                case ".OR.":
-                    return Codes.LogicalOpCode;
-                default: return Codes.ErrorCode;
             }
         }
 
@@ -117,6 +90,7 @@ namespace Scanner
             {
                 return Codes.IntegerConstCode;
             }
+
             // Проверяет первое число на то что это цифра. \ Checks if the first number is a digit
             if (Char.IsDigit(text[0]))
             {
@@ -166,33 +140,6 @@ namespace Scanner
             return Codes.IdentifierCode;
         }
 
-        private static Codes IsBracket(string text)
-        {
-            if (text == "")
-            {
-                return Codes.ErrorCode;
-            }
-
-            switch (text)
-            {
-                case "(": return Codes.LeftParenCode;
-                case ")": return Codes.RightParenCode;
-                default: return Codes.ErrorCode;
-            }
-        }
-
-        private static Codes IsLogicalConstant(string text)
-        {
-            switch (text.ToUpper())
-            {
-                case "TRUE":
-                case "FALSE":
-                    return Codes.LogicalConstantCode;
-                default:
-                    return Codes.ErrorCode;
-            }
-        }
-
         private static char GetNext(string text, int currentPosition)
         {
             return text[currentPosition + 1];
@@ -209,46 +156,13 @@ namespace Scanner
             {
                 char c = inputString[i];
 
-                // Это скобки. \ It's brackets.
-                if (c == ')' || c == '(')
+                // Это оператором =. \ It is an operator.
+                if (c == '=')
                 {
-                    i++;
-                    parts.Add(new LexicalItem(IsBracket(c.ToString()), c.ToString(), i, i));
-                    continue;
-                }
-
-                // Может быть оператором. \ Can be an operator.
-                if (c == '.')
-                {
-                    subString = "";
                     int start = i + 1;
-                    int countDot = 0;
-
-                    while ((i < inputString.Length - 1) && (char.IsLetter(inputString[i]) || inputString[i] == '.'))
-                    {
-                        if (countDot < 2)
-                        {
-                            subString += inputString[i];
-
-                            if (inputString[i] == '.')
-                            {
-                                countDot++;
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
-                        i++;
-                    }
-
-                    if (subString.EndsWith("."))
-                    {
-                        //parts.Add($"{start}:{i}", IsOperator(subString));
-                        parts.Add(new LexicalItem(IsOperator(subString), subString, start, i));
-                    }
-
-                    subString = "";
+                    i++;
+                    parts.Add(new LexicalItem(Codes.EqualCode, c.ToString(), start, i + 1));
+                    continue;
                 }
 
                 // Может быть идентификатором. \ Can be an identifier.
@@ -256,19 +170,20 @@ namespace Scanner
                 {
                     subString = "";
                     int start = i + 1;
+                    while (i < inputString.Length - 1 && Char.IsLetter(inputString[i]))
+                    {
+                        subString += inputString[i];
+                        i++;
+                    }
 
                     while ((i < inputString.Length) && (Char.IsLetter(inputString[i]) || Char.IsDigit(inputString[i])))
                     {
                         subString += inputString[i];
                         i++;
                     }
-                    if (IsLogicalConstant(subString) == Codes.LogicalConstantCode)
-                    {
-                        parts.Add(new LexicalItem(IsLogicalConstant(subString), subString, start, i));
-                        continue;
-                    }
-                    
+
                     parts.Add(new LexicalItem(IsIdentifier(subString), subString, start, i));
+                    continue;
                 }
 
                 // Может быть числом. \ Can be a number.
@@ -283,35 +198,60 @@ namespace Scanner
                         i++;
                     }
 
-                    if ((i < inputString.Length - 1) && Char.IsLetter(GetNext(inputString, i))&& (i>1))
-                    {
-                        subString = subString.Remove(subString.LastIndexOf('.'), 1);
-                        i--;
-                    }
-
                     if (subString.EndsWith("."))
                     {
-                        //parts.Add($"{start}:{i}", Codes.ErrorCode);
                         parts.Add(new LexicalItem(Codes.ErrorCode, subString, start, i));
                     }
                     else
                     {
-                        //parts.Add($"{start}:{i}", IsNumber(subString));
                         parts.Add(new LexicalItem(IsNumber(subString), subString, start, i));
                     }
 
                     subString = "";
                 }
 
+                if (c == '*')
+                {
+                    subString = c.ToString();
+                    int start = i + 1;
+                    if (i < inputString.Length - 1 || GetNext(inputString, i) == '*')
+                    {
+                        i++;
+                        subString += inputString[i];
+                    }
+                    i++;
+                    parts.Add(new LexicalItem(IsArithmOperator(subString), subString, start, i));
+                    continue;
+                }
+
+                if (c == '/')
+                {
+                    subString = c.ToString();
+                    int start = i + 1;
+                    if (i < inputString.Length - 1 || GetNext(inputString, i) == '/')
+                    {
+                        i++;
+                        subString += inputString[i];
+                    }
+                    i++;
+                    parts.Add(new LexicalItem(IsArithmOperator(subString), subString, start, i));
+                    continue;
+                }
+
                 // Это арифметический оператор. \ It is an arithmetic operator.
-                if (c == '+' || c == '-' || c == '*' || c == '/')
+                if (IsArithmOperator(c.ToString()) != Codes.ErrorCode)
                 {
                     i++;
-                    //parts.Add(i.ToString(), IsArithmOperator(c.ToString()));
                     parts.Add(new LexicalItem(IsArithmOperator(c.ToString()), c.ToString(), i, i));
                     continue;
                 }
-                if (!Char.IsLetter(c) && !Char.IsDigit(c) && c !='.')
+                if (Char.IsWhiteSpace(c))
+                {
+                    parts.Add(new LexicalItem(Codes.SpaceConstCode, c.ToString(), i + 1, i + 1));
+                    i++;
+                    continue;
+                }
+                if (!Char.IsLetter(c) && !Char.IsDigit(c) && c != '.')
                 {
                     i++;
                     parts.Add(new LexicalItem(Codes.ErrorCode, c.ToString(), i, i));

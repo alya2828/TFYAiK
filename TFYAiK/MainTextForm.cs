@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scanner;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -215,26 +216,10 @@ namespace TFYAiK
         {
             if (this.textBox.Text == string.Empty)
                 return;
-
             this.debugTextBox.Text = string.Empty;
-            string expr = this.textBox.Text.Filter(listToRemove);
-
-            List<Scanner.LexicalScanner.LexicalItem> expression = Scanner.LexicalScanner.GetTokens(this.textBox.Text.Filter(listToRemove));
-
-            Scanner.Parser.ParseInit(expression);
-           
-            if (Scanner.Parser.s_errors.Count == 0)
-            {
-                this.debugTextBox.Text = $"Ошибок нет! {DateTime.Now}";
-            }
-            else
-            {
-                foreach (var error in Scanner.Parser.s_errors)
-                {
-                    this.debugTextBox.Text += $" Ошибка в позиции {error.position}: {error.message}\n";
-                }
-            }
-            Scanner.Parser.ClearErrorsList();
+            var items = LexicalScanner.GetTokens(this.textBox.Text);
+            foreach (LexicalScanner.LexicalItem item in items)
+                this.debugTextBox.Text += item.ToString() + Environment.NewLine;
         }
 
         private void УвеличитьМасштабToolStripMenuItem_Click(object sender, EventArgs e)
@@ -268,47 +253,15 @@ namespace TFYAiK
         {
             openDocument("\\Help\\Постановка-задачи.html");
         }
-
-        private void грамматикаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Грамматика.html");
-        }
-
-        private void классификацияГрамматикиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Классификация-грамматики.html");
-        }
-
-        private void методАнализаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Метод-анализа.html");
-        }
-
-        private void диагностикаИНейтрализацияОшибокToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Диагностика-и-нейтрализация-ошибок.html");
-        }
-
-       
-
+        
         private void списокЛитературыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openDocument("\\Help\\Список-литературы.html");
         }
-
-        private void исходныйКодПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Исходный код программы.html");
-        }
-
+        
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openDocument("\\Help\\Информация-о-программе.html");
-        }
-
-        private void тестовыйПримерToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openDocument("\\Help\\Тестовый-пример.html");
         }
     }
 

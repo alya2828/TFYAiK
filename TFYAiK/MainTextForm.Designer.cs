@@ -277,35 +277,30 @@
             this.грамматикаToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.грамматикаToolStripMenuItem.Name = "грамматикаToolStripMenuItem";
             resources.ApplyResources(this.грамматикаToolStripMenuItem, "грамматикаToolStripMenuItem");
-            this.грамматикаToolStripMenuItem.Click += new System.EventHandler(this.грамматикаToolStripMenuItem_Click);
             // 
             // классификацияГрамматикиToolStripMenuItem
             // 
             this.классификацияГрамматикиToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.классификацияГрамматикиToolStripMenuItem.Name = "классификацияГрамматикиToolStripMenuItem";
             resources.ApplyResources(this.классификацияГрамматикиToolStripMenuItem, "классификацияГрамматикиToolStripMenuItem");
-            this.классификацияГрамматикиToolStripMenuItem.Click += new System.EventHandler(this.классификацияГрамматикиToolStripMenuItem_Click);
             // 
             // методАнализаToolStripMenuItem
             // 
             this.методАнализаToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.методАнализаToolStripMenuItem.Name = "методАнализаToolStripMenuItem";
             resources.ApplyResources(this.методАнализаToolStripMenuItem, "методАнализаToolStripMenuItem");
-            this.методАнализаToolStripMenuItem.Click += new System.EventHandler(this.методАнализаToolStripMenuItem_Click);
             // 
             // диагностикаИНейтрализацияОшибокToolStripMenuItem
             // 
             this.диагностикаИНейтрализацияОшибокToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Name = "диагностикаИНейтрализацияОшибокToolStripMenuItem";
             resources.ApplyResources(this.диагностикаИНейтрализацияОшибокToolStripMenuItem, "диагностикаИНейтрализацияОшибокToolStripMenuItem");
-            this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Click += new System.EventHandler(this.диагностикаИНейтрализацияОшибокToolStripMenuItem_Click);
             // 
             // текстовыйПримерToolStripMenuItem
             // 
             this.текстовыйПримерToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.текстовыйПримерToolStripMenuItem.Name = "текстовыйПримерToolStripMenuItem";
             resources.ApplyResources(this.текстовыйПримерToolStripMenuItem, "текстовыйПримерToolStripMenuItem");
-            this.текстовыйПримерToolStripMenuItem.Click += new System.EventHandler(this.тестовыйПримерToolStripMenuItem_Click);
             // 
             // списокЛитературыToolStripMenuItem
             // 
@@ -319,7 +314,6 @@
             this.исходныйКодПрограммыToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.исходныйКодПрограммыToolStripMenuItem.Name = "исходныйКодПрограммыToolStripMenuItem";
             resources.ApplyResources(this.исходныйКодПрограммыToolStripMenuItem, "исходныйКодПрограммыToolStripMenuItem");
-            this.исходныйКодПрограммыToolStripMenuItem.Click += new System.EventHandler(this.исходныйКодПрограммыToolStripMenuItem_Click);
             // 
             // пускToolStripMenuItem
             // 
