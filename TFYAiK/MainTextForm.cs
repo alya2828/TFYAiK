@@ -19,7 +19,7 @@ namespace TFYAiK
     public partial class MainForm : Form
     {
 
-        private static List<Char> listToRemove = new List<Char>() { ' ', '\n', '\t' }; 
+        private static List<Char> listToRemove = new List<Char>() { ' ', '\n', '\t' };
         FileProvider FileProvider = new FileProvider();
         Stack<Func<object>> undoStack = new Stack<Func<object>>();
         Stack<Func<object>> redoStack = new Stack<Func<object>>();
@@ -116,7 +116,7 @@ namespace TFYAiK
         {
             if (this.textBox.SelectionLength > 0)
                 this.textBox.Paste();
-            
+
         }
 
         private void copyButton_Click(object sender, EventArgs e)
@@ -222,7 +222,7 @@ namespace TFYAiK
             List<Scanner.LexicalScanner.LexicalItem> expression = Scanner.LexicalScanner.GetTokens(this.textBox.Text.Filter(listToRemove));
 
             Scanner.Parser.ParseInit(expression);
-           
+
             if (Scanner.Parser.s_errors.Count == 0)
             {
                 this.debugTextBox.Text = $"Ошибок нет! {DateTime.Now}";
@@ -241,14 +241,14 @@ namespace TFYAiK
         {
             float newFontSize = this.textBox.Font.Size + 1;
             this.textBox.Font = new Font(this.textBox.Font.FontFamily, newFontSize);
-            this.lineNumberRichTextBox.Font = new Font(this.lineNumberRichTextBox.Font.FontFamily,newFontSize);        
+            this.lineNumberRichTextBox.Font = new Font(this.lineNumberRichTextBox.Font.FontFamily, newFontSize);
         }
 
         private void УменьшитьМасштабToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float newFontSize = this.textBox.Font.Size - 1;
             this.textBox.Font = new Font(this.textBox.Font.FontFamily, newFontSize);
-            this.lineNumberRichTextBox.Font = new Font(this.lineNumberRichTextBox.Font.FontFamily, newFontSize);          
+            this.lineNumberRichTextBox.Font = new Font(this.lineNumberRichTextBox.Font.FontFamily, newFontSize);
         }
 
         private void openNewButton_Click(object sender, EventArgs e)
@@ -289,7 +289,7 @@ namespace TFYAiK
             openDocument("\\Help\\Диагностика-и-нейтрализация-ошибок.html");
         }
 
-       
+
 
         private void списокЛитературыToolStripMenuItem_Click(object sender, EventArgs e)
         {
