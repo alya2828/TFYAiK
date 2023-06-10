@@ -64,9 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LexicalScanner.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="FileProvider.cs" />
+    <Compile Include="FiniteStateMachine.cs" />
+    <Compile Include="LexicalScanner.cs" />
     <Compile Include="MainTextForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -215,26 +215,15 @@ namespace TFYAiK
         {
             if (this.textBox.Text == string.Empty)
                 return;
-
             this.debugTextBox.Text = string.Empty;
-            string expr = this.textBox.Text.Filter(listToRemove);
 
-            List<Scanner.LexicalScanner.LexicalItem> expression = Scanner.LexicalScanner.GetTokens(this.textBox.Text.Filter(listToRemove));
-
-            Scanner.Parser.ParseInit(expression);
-           
-            if (Scanner.Parser.s_errors.Count == 0)
+            string[] strings = this.textBox.Text.Split('\n');
+            foreach (string str in strings)
             {
-                this.debugTextBox.Text = $"Ошибок нет! {DateTime.Now}";
+                FiniteStateMachine FSM = new FiniteStateMachine();
+                FSM.InintFSM(LexicalScanner.GetTokens(str));
+                this.debugTextBox.Text += $"{str}: {FSM.result}{Environment.NewLine}";
             }
-            else
-            {
-                foreach (var error in Scanner.Parser.s_errors)
-                {
-                    this.debugTextBox.Text += $" Ошибка в позиции {error.position}: {error.message}\n";
-                }
-            }
-            Scanner.Parser.ClearErrorsList();
         }
 
         private void УвеличитьМасштабToolStripMenuItem_Click(object sender, EventArgs e)
