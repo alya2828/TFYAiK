@@ -255,8 +255,11 @@
   <data name="debugTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="debugTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
   <data name="debugTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 98</value>
+    <value>893, 94</value>
   </data>
   <data name="debugTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -304,7 +307,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -456,6 +459,9 @@
   <data name="текстToolStripMenuItem.Text" xml:space="preserve">
     <value>Текст</value>
   </data>
+  <data name="пускToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="пускToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 24</value>
   </data>
@@ -520,7 +526,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="saveButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -681,7 +687,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cutButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1355,7 +1361,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cutButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="copyButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2059,7 +2065,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;copyButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pasteButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2133,7 +2139,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pasteButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="undoButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2175,7 +2181,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;undoButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="redoButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2222,7 +2228,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;redoButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="createNewButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2838,7 +2844,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;createNewButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="openNewButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3004,6 +3010,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;openNewButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="regExpIpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>582, 29</value>
+  </data>
+  <data name="regExpIpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 40</value>
+  </data>
+  <data name="regExpIpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="regExpIpButton.Text" xml:space="preserve">
+    <value>РВ для IPv6</value>
+  </data>
+  <data name="&gt;&gt;regExpIpButton.Name" xml:space="preserve">
+    <value>regExpIpButton</value>
+  </data>
+  <data name="&gt;&gt;regExpIpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;regExpIpButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;regExpIpButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

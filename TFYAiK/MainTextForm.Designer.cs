@@ -73,6 +73,7 @@
             this.redoButton = new System.Windows.Forms.Button();
             this.createNewButton = new System.Windows.Forms.Button();
             this.openNewButton = new System.Windows.Forms.Button();
+            this.regExpIpButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -323,9 +324,10 @@
             // 
             // пускToolStripMenuItem
             // 
-            this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
             resources.ApplyResources(this.пускToolStripMenuItem, "пускToolStripMenuItem");
-            this.пускToolStripMenuItem.Click += new System.EventHandler(this.ПускToolStripMenuItem_Click);
+            this.пускToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
+            this.пускToolStripMenuItem.Click += new System.EventHandler(this.пускToolStripMenuItem_Click);
             // 
             // видToolStripMenuItem
             // 
@@ -431,11 +433,19 @@
             this.openNewButton.UseVisualStyleBackColor = true;
             this.openNewButton.Click += new System.EventHandler(this.openNewButton_Click);
             // 
+            // regExpIpButton
+            // 
+            resources.ApplyResources(this.regExpIpButton, "regExpIpButton");
+            this.regExpIpButton.Name = "regExpIpButton";
+            this.regExpIpButton.UseVisualStyleBackColor = true;
+            this.regExpIpButton.Click += new System.EventHandler(this.regExpIpButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.regExpIpButton);
             this.Controls.Add(this.openNewButton);
             this.Controls.Add(this.createNewButton);
             this.Controls.Add(this.mainSplitContainer);
@@ -508,6 +518,7 @@
         private System.Windows.Forms.ToolStripMenuItem уменьшитьМасштабToolStripMenuItem;
         private System.Windows.Forms.Button openNewButton;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.Button regExpIpButton;
     }
 }
 

@@ -211,32 +211,6 @@ namespace TFYAiK
             openDocument("\\Help\\index.html");
         }
 
-        private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.textBox.Text == string.Empty)
-                return;
-
-            this.debugTextBox.Text = string.Empty;
-            string expr = this.textBox.Text.Filter(listToRemove);
-
-            List<Scanner.LexicalScanner.LexicalItem> expression = Scanner.LexicalScanner.GetTokens(this.textBox.Text.Filter(listToRemove));
-
-            Scanner.Parser.ParseInit(expression);
-
-            if (Scanner.Parser.s_errors.Count == 0)
-            {
-                this.debugTextBox.Text = $"Ошибок нет! {DateTime.Now}";
-            }
-            else
-            {
-                foreach (var error in Scanner.Parser.s_errors)
-                {
-                    this.debugTextBox.Text += $" Ошибка в позиции {error.position}: {error.message}\n";
-                }
-            }
-            Scanner.Parser.ClearErrorsList();
-        }
-
         private void УвеличитьМасштабToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float newFontSize = this.textBox.Font.Size + 1;
@@ -309,6 +283,29 @@ namespace TFYAiK
         private void тестовыйПримерToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openDocument("\\Help\\Тестовый-пример.html");
+        }
+
+        private void regExpIpButton_Click(object sender, EventArgs e)
+        {
+            this.debugTextBox.Text = string.Empty;
+            int i = 0;
+            Regex regex = new Regex("((^|:)([0-9a-fA-F]{0,4})){1,8}");
+            string[] strings = this.textBox.Text.Split('\n');
+            foreach (string str in strings)
+            {
+                i++;
+                MatchCollection matches = regex.Matches(str);
+                foreach(Match match in matches)
+                {
+                    debugTextBox.Text += $"Строка:{i} Позиция:{match.Index} '{match.Value}'{Environment.NewLine}";
+
+                }
+            }
+        }
+
+        private void пускToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
